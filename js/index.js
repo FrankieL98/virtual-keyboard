@@ -66,3 +66,29 @@ const keyboardSpec = {
   ArrowDown: [0, 0, 0, 0, 0, 0, 1, '▼'],
   ArrowRight: [0, 0, 0, 0, 0, 0, 1, '►'],
 };
+
+// Create elements on the page
+const textarea = document.createElement('textarea');
+textarea.className = 'textarea';
+document.body.append(textarea);
+
+const keyboard = document.createElement('div');
+keyboard.className = 'keyboard';
+document.body.append(keyboard);
+
+const subdescr = document.createElement('p');
+subdescr.className = 'subdescr';
+subdescr.innerHTML = '*Change language: Shift + Alt';
+document.body.append(subdescr);
+
+const subdescr2 = document.createElement('p');
+subdescr2.className = 'subdescr';
+subdescr2.innerHTML = '*Created in Windows 10 OS';
+document.body.append(subdescr2);
+
+let isShift = false;
+let isCapsLock = false;
+let prevKey = '';
+const LANG_ENG = 0;
+const LANG_RUS = 3;
+let lang = +localStorage.getItem('lang');
