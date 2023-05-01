@@ -92,3 +92,27 @@ let prevKey = '';
 const LANG_ENG = 0;
 const LANG_RUS = 3;
 let lang = +localStorage.getItem('lang');
+
+// Create buttons on the keyboard
+class Button {
+  constructor(key, lang) {
+    const value = keyboardSpec[key];
+    const charCode = value[0 + lang];
+    const widthKoef = value[6];
+    const altName = value[7];
+    this.button = document.createElement('button');
+    this.button.className = 'button';
+    this.button.id = key;
+    this.button.innerHTML = altName || String.fromCharCode(charCode);
+    this.button.style.height = 'calc((100% - 50px) / 5)';
+    this.button.style.width = `calc((100% - 150px) / 15 * ${widthKoef} + (${widthKoef} - 1) * 10px)`;
+  }
+}
+
+Object.keys(keyboardSpec).forEach((key) => {
+  if (Object.prototype.hasOwnProperty.call(keyboardSpec, key)) {
+    keyboard.append((new Button(key, lang)).button);
+  }
+});
+
+const buttons = document.querySelectorAll('.button');
